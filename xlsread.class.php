@@ -73,12 +73,12 @@ class XLSRead {
    *
    * @param file $FILE               file wich we read
    * @param string $B                last column
-   * @param string $sheet            number worksheet for reading
+   * @param string $sheet            index worksheet for reading
    * @param string $ExplicitColumns  list
    * @return bool or mysql_result
    */
   # $sheet -> number of the sheet to read, by default select active sheet
-  static public function xls_to_array($FILE, string $B='', string $sheet='', string $ExplicitColumns = "", bool $unsetSpreadSheet = TRUE){
+  static public function xls_to_array($FILE, string $B='', string $sheet='', string $ExplicitColumns = ""){
     if(!self::is_xls_file($FILE)){
       return false;
     }
@@ -139,9 +139,7 @@ class XLSRead {
             TRUE         // Should the array be indexed by cell row and cell column
         );
 
-    if($unsetSpreadSheet){
-      unset($spreadsheet);
-    }
+    unset($spreadsheet);
 
     return $dataArray;
   }#end xls_to_array
